@@ -14,6 +14,7 @@ DirectoryIndex index.php index.html
   ServerAdmin {{ vhost.serveradmin }}
 {% endif %}
   <Directory "{{ vhost.documentroot }}">
+    DirectoryIndex {{ vhost.directoryindex|default('index.php index.html') }}
     AllowOverride All
     Options -Indexes +FollowSymLinks
     Require all granted
@@ -49,6 +50,7 @@ DirectoryIndex index.php index.html
   ServerAdmin {{ vhost.serveradmin }}
 {% endif %}
   <Directory "{{ vhost.documentroot }}">
+    DirectoryIndex {{ vhost.directoryindex|default('index.php index.html') }}
     AllowOverride All
     Options -Indexes +FollowSymLinks
     Require all granted
