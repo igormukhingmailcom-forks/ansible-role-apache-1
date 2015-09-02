@@ -18,6 +18,9 @@ DirectoryIndex index.php index.html
     AllowOverride All
     Options -Indexes +FollowSymLinks
     Require all granted
+    {% if vhost.directory_extra_parameters|default(false) %}
+      {{ vhost.directory_extra_parameters }}
+    {% endif %}
   </Directory>
 {% if vhost.extra_parameters is defined %}
   {{ vhost.extra_parameters }}
@@ -54,6 +57,9 @@ DirectoryIndex index.php index.html
     AllowOverride All
     Options -Indexes +FollowSymLinks
     Require all granted
+    {% if vhost.directory_extra_parameters|default(false) %}
+      {{ vhost.directory_extra_parameters }}
+    {% endif %}
   </Directory>
 {% if vhost.extra_parameters is defined %}
   {{ vhost.extra_parameters }}
