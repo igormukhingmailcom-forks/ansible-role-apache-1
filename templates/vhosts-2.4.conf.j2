@@ -1,5 +1,5 @@
 
-DirectoryIndex index.php index.html
+DirectoryIndex app.php
 
 {# Set up VirtualHosts #}
 {% for vhost in apache_vhosts %}
@@ -14,10 +14,17 @@ DirectoryIndex index.php index.html
   ServerAdmin {{ vhost.serveradmin }}
 {% endif %}
   <Directory "{{ vhost.documentroot }}">
-    DirectoryIndex {{ vhost.directoryindex|default('index.php index.html') }}
+    DirectoryIndex {{ vhost.directoryindex|default('app.php') }}
     AllowOverride All
     Options -Indexes +FollowSymLinks
     Require all granted
+
+    <IfModule mod_rewrite.c>
+      RewriteEngine On
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteRule ^(.*)$ /{{ vhost.directoryindex|default('app.php') }} [QSA,L]
+    </IfModule>
+
     {% if vhost.directory_extra_parameters|default(false) %}
       {{ vhost.directory_extra_parameters }}
     {% endif %}
@@ -53,10 +60,17 @@ DirectoryIndex index.php index.html
   ServerAdmin {{ vhost.serveradmin }}
 {% endif %}
   <Directory "{{ vhost.documentroot }}">
-    DirectoryIndex {{ vhost.directoryindex|default('index.php index.html') }}
+    DirectoryIndex {{ vhost.directoryindex|default('app.php') }}
     AllowOverride All
     Options -Indexes +FollowSymLinks
     Require all granted
+
+    <IfModule mod_rewrite.c>
+      RewriteEngine On
+      RewriteCond %{REQUEST_FILENAME} !-f
+      RewriteRule ^(.*)$ /{{ vhost.directoryindex|default('app.php') }} [QSA,L]
+    </IfModule>
+
     {% if vhost.directory_extra_parameters|default(false) %}
       {{ vhost.directory_extra_parameters }}
     {% endif %}
