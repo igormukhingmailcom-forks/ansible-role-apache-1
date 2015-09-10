@@ -17,7 +17,6 @@ DirectoryIndex app.php
     DirectoryIndex {{ vhost.directoryindex|default('app.php') }}
     AllowOverride All
     Options -Indexes +FollowSymLinks
-    Require all granted
 
     <IfModule mod_rewrite.c>
       RewriteEngine On
@@ -65,7 +64,6 @@ DirectoryIndex app.php
     DirectoryIndex {{ vhost.directoryindex|default('app.php') }}
     AllowOverride All
     Options -Indexes +FollowSymLinks
-    Require all granted
 
     <IfModule mod_rewrite.c>
       RewriteEngine On
