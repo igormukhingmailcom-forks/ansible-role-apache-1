@@ -26,7 +26,9 @@ DirectoryIndex app.php
     </IfModule>
 
     {% if vhost.directory_extra_parameters|default(false) %}
-      {{ vhost.directory_extra_parameters }}
+      {% for directory_extra_parameter in vhost.directory_extra_parameters %}
+        {{ directory_extra_parameter }}
+      {% endfor %}
     {% endif %}
   </Directory>
 {% if vhost.extra_parameters is defined %}
@@ -72,7 +74,9 @@ DirectoryIndex app.php
     </IfModule>
 
     {% if vhost.directory_extra_parameters|default(false) %}
-      {{ vhost.directory_extra_parameters }}
+      {% for directory_extra_parameter in vhost.directory_extra_parameters %}
+        {{ directory_extra_parameter }}
+      {% endfor %}
     {% endif %}
   </Directory>
 {% if vhost.extra_parameters is defined %}
